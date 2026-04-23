@@ -284,18 +284,19 @@ p  {
   pointer-events: none;
 }
 
-/* Hero container: single column, top-anchored */
+/* Hero container: single column, left-aligned */
 .hero__container {
   flex: 1;
-  display: flex;
-  align-items: flex-start;
   padding-top: clamp(7rem, 14vw, 11rem);
   padding-bottom: clamp(4rem, 8vw, 7rem);
   position: relative;
   z-index: 1;
 }
 
-.hero__content { max-width: 700px; }
+.hero__content {
+  max-width: 700px;
+  text-align: left;
+}
 .hero__title {
   color: var(--off-white); margin-bottom: 1.5rem;
 }
@@ -304,7 +305,7 @@ p  {
   color: rgba(245,245,245,.58);
   max-width: 560px; margin-bottom: 2.5rem; line-height: 1.75;
 }
-.hero__actions { display: flex; gap: .875rem; flex-wrap: wrap; }
+.hero__actions { display: flex; justify-content: flex-start; gap: .875rem; flex-wrap: wrap; }
 
 /* Trust strip anchored at bottom of hero */
 .hero__foot {
