@@ -287,14 +287,24 @@ p  {
 /* Hero container: single column, left-aligned */
 .hero__container {
   flex: 1;
-  padding-top: clamp(7rem, 14vw, 11rem);
-  padding-bottom: clamp(4rem, 8vw, 7rem);
+  width: 100%;
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding:
+    clamp(7rem, 14vw, 11rem)
+    var(--pad-x)
+    clamp(4rem, 8vw, 7rem)
+    var(--pad-x);
   position: relative;
   z-index: 1;
+  box-sizing: border-box;
+  display: block;
 }
 
 .hero__content {
   max-width: 700px;
+  margin-left: 0;
+  margin-right: auto;
   text-align: left;
 }
 .hero__title {
