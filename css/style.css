@@ -284,18 +284,18 @@ p  {
   pointer-events: none;
 }
 
-/* Hero container: single column, left-aligned */
+/* Hero container: single column, top-anchored */
 .hero__container {
   flex: 1;
   display: flex;
-  align-items: center;
-  padding-top: 8rem;
-  padding-bottom: 5rem;
+  align-items: flex-start;
+  padding-top: clamp(7rem, 14vw, 11rem);
+  padding-bottom: clamp(4rem, 8vw, 7rem);
   position: relative;
   z-index: 1;
 }
 
-.hero__content { max-width: 680px; }
+.hero__content { max-width: 700px; }
 .hero__title {
   color: var(--off-white); margin-bottom: 1.5rem;
 }
@@ -793,7 +793,7 @@ a.google-badge:hover { opacity: .75; }
   .nav__cta   { display: none; }
   .nav__burger { display: flex; }
 
-  .hero__container { padding-top: 6rem; padding-bottom: 3rem; align-items: flex-start; }
+  .hero__container { padding-top: 5.5rem; padding-bottom: 3rem; }
   .hero__actions { flex-direction: column; max-width: 280px; }
   .hero__foot-inner { column-gap: 1.25rem; }
 
