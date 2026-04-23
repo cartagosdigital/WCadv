@@ -372,51 +372,21 @@ p  {
   align-items: center;
 }
 
-/* Lighthouse graphic */
-.farol {
-  width: 380px;
-  height: 380px;
-  max-width: 100%;
-  background: var(--navy);
-  position: relative;
+/* Office photo */
+.sobre__photo {
+  width: 100%;
+  height: 440px;
   overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto;
+  border-radius: 2px;
 }
-.farol::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(ellipse 120% 80% at 80% -10%, rgba(245,245,245,.06) 0%, transparent 60%);
+.sobre__photo img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  display: block;
+  transition: transform .6s ease;
 }
-.farol__beam {
-  position: absolute;
-  top: 0; left: 50%;
-  transform: translateX(-50%);
-  width: 400%; height: 400%;
-  background: conic-gradient(
-    from 90deg at 50% 0%,
-    transparent 0deg,
-    rgba(245,245,245,.04) 8deg,
-    rgba(245,245,245,.08) 12deg,
-    rgba(245,245,245,.04) 16deg,
-    transparent 24deg
-  );
-  animation: farolBeam 8s ease-in-out infinite alternate;
-}
-@keyframes farolBeam {
-  0%   { transform: translateX(-50%) rotate(-14deg); }
-  100% { transform: translateX(-50%) rotate(14deg); }
-}
-.farol__mark {
-  font-family: var(--font-h);
-  font-size: 3.25rem; font-weight: 800;
-  color: var(--off-white); letter-spacing: -.03em;
-  line-height: 1.05; text-align: center;
-  position: relative; z-index: 1;
-}
+.sobre__photo:hover img { transform: scale(1.03); }
 
 .sobre__content h2 { color: var(--navy); margin-bottom: 1.25rem; }
 .sobre__content p  { margin-bottom: 1.1rem; }
@@ -500,30 +470,19 @@ p  {
 .adv-card:hover { box-shadow: 0 20px 56px rgba(20,31,58,.12); }
 
 .adv-card__photo {
-  height: 300px;
+  height: 320px;
   position: relative;
   overflow: hidden;
-  display: flex;
-  align-items: flex-end;
-  padding: 1.5rem;
+  background: var(--navy-2);
 }
-.adv-card__photo--w {
-  background: linear-gradient(145deg, var(--navy-2) 0%, var(--navy-3) 100%);
+.adv-card__photo img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+  transition: transform .5s ease;
 }
-.adv-card__photo--h {
-  background: linear-gradient(145deg, var(--navy-3) 0%, var(--navy-2) 100%);
-}
-.adv-card__photo::before {
-  content: '';
-  position: absolute; inset: 0;
-  background: radial-gradient(ellipse 80% 60% at 80% 0%, rgba(245,245,245,.08) 0%, transparent 60%);
-}
-.adv-card__mark {
-  font-family: var(--font-h);
-  font-size: 2rem; font-weight: 800;
-  color: rgba(245,245,245,.08);
-  line-height: 1; position: relative; z-index: 1;
-}
+.adv-card:hover .adv-card__photo img { transform: scale(1.04); }
 
 .adv-card__body { padding: 1.75rem 2rem 2rem; }
 .adv-card__role {
