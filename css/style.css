@@ -485,23 +485,26 @@ section[id] { scroll-margin-top: 80px; }
 
 .equipe__grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2rem;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 3rem;
   max-width: 900px;
+  margin: 0 auto 3.5rem;
+  align-items: start;
 }
 
 .adv-card {
-  background: var(--white);
-  overflow: hidden;
-  transition: box-shadow var(--dur);
+  background: transparent;
+  transition: transform var(--dur) var(--ease);
 }
-.adv-card:hover { box-shadow: 0 20px 56px rgba(20,31,58,.12); }
+.adv-card:hover { transform: translateY(-3px); }
 
 .adv-card__photo {
-  height: 320px;
-  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 5;
   overflow: hidden;
   background: var(--navy-2);
+  margin-bottom: 1.5rem;
+  position: relative;
 }
 .adv-card__photo img {
   width: 100%; height: 100%;
@@ -512,43 +515,110 @@ section[id] { scroll-margin-top: 80px; }
 }
 .adv-card:hover .adv-card__photo img { transform: scale(1.04); }
 
-.adv-card__body { padding: 1.75rem 2rem 2rem; }
-.adv-card__role {
-  display: block; font-size: .65rem; font-weight: 600;
-  letter-spacing: .18em; text-transform: uppercase;
-  color: var(--gray-2); margin-bottom: .375rem;
+.adv-card__body {
+  padding: 0 .25rem;
 }
-.adv-card h3    { font-size: 1.35rem; color: var(--navy); margin-bottom: .2rem; }
-.adv-card__oab  { font-size: .78rem; color: var(--gray-2); margin-bottom: .875rem; }
-.adv-card p     { font-size: .875rem; margin-bottom: 1.5rem; }
-.adv-card__btn  { font-size: .8rem; padding: .65rem 1.25rem; }
+.adv-card__role {
+  display: block; font-size: .68rem; font-weight: 600;
+  letter-spacing: .2em; text-transform: uppercase;
+  color: var(--gray-2); margin-bottom: .5rem;
+}
+.adv-card h3   {
+  font-size: clamp(1.3rem, 2vw, 1.6rem);
+  color: var(--navy); margin-bottom: .25rem;
+  letter-spacing: -.015em;
+}
+.adv-card__oab {
+  font-size: .8rem; color: var(--gray-2);
+  margin-bottom: 1rem; font-weight: 500;
+  letter-spacing: .05em;
+}
+.adv-card p {
+  font-size: .9rem; line-height: 1.7;
+  color: var(--gray-2);
+}
+
+.equipe__cta {
+  text-align: center;
+  padding-top: 2.5rem;
+  border-top: 1px solid rgba(20,31,58,.08);
+}
 
 /* ============================================================
-   METODOLOGIA
+   METODOLOGIA — horizontal flow
    ============================================================ */
 .metodologia { background: var(--navy); }
 
 .steps {
-  max-width: 760px;
-  margin-bottom: 3rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2.5rem;
+  position: relative;
+  max-width: 1040px;
+  margin: 0 auto 3.5rem;
+}
+
+/* Horizontal connecting line behind the circles */
+.steps::before {
+  content: '';
+  position: absolute;
+  top: 32px;
+  left: 12%;
+  right: 12%;
+  height: 1px;
+  background: linear-gradient(to right,
+    rgba(168,167,175,0) 0%,
+    rgba(168,167,175,.22) 18%,
+    rgba(168,167,175,.22) 82%,
+    rgba(168,167,175,0) 100%
+  );
+  z-index: 0;
 }
 
 .step {
-  display: grid;
-  grid-template-columns: 72px 1fr;
-  gap: 2rem;
-  padding: 2.25rem 0;
-  border-bottom: 1px solid rgba(168,167,175,.1);
+  position: relative;
+  z-index: 1;
+  text-align: center;
 }
-.step:first-child { border-top: 1px solid rgba(168,167,175,.1); }
 
 .step__num {
-  font-family: var(--font-h); font-size: 2.25rem; font-weight: 800;
-  color: var(--gray); opacity: .22; line-height: 1; padding-top: 2px;
-  flex-shrink: 0;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: var(--navy);
+  border: 1px solid rgba(168,167,175,.3);
+  color: var(--off-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-h);
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: .02em;
+  margin: 0 auto 1.75rem;
+  transition: border-color var(--dur), background var(--dur), transform var(--dur) var(--ease);
 }
-.step__body h3 { font-size: 1.1rem; color: var(--off-white); margin-bottom: .625rem; font-weight: 600; }
-.step__body p  { font-size: .9rem; color: rgba(168,167,175,.65); line-height: 1.7; }
+.step:hover .step__num {
+  border-color: rgba(245,245,245,.5);
+  background: var(--navy-3);
+  transform: scale(1.05);
+}
+
+.step__body h3 {
+  font-size: 1.05rem;
+  color: var(--off-white);
+  margin-bottom: .75rem;
+  font-weight: 600;
+  letter-spacing: -.01em;
+}
+.step__body p {
+  font-size: .88rem;
+  color: rgba(168,167,175,.6);
+  line-height: 1.7;
+  max-width: 280px;
+  margin: 0 auto;
+}
+
 .metodologia__cta { text-align: center; }
 
 /* ============================================================
@@ -814,7 +884,7 @@ a.google-badge:hover { opacity: .75; }
   .areas__grid { grid-template-columns: repeat(2, 1fr); }
 
   /* Equipe */
-  .equipe__grid { grid-template-columns: 1fr; max-width: 480px; }
+  .equipe__grid { grid-template-columns: 1fr; max-width: 420px; gap: 2.5rem; }
 
   /* FAQ: remove sidebar */
   .faq__layout { grid-template-columns: 1fr; }
@@ -864,9 +934,31 @@ a.google-badge:hover { opacity: .75; }
   /* Equipe */
   .equipe__grid { max-width: none; }
 
-  /* Metodologia */
-  .step { grid-template-columns: 52px 1fr; gap: 1rem; }
-  .step__num { font-size: 1.75rem; }
+  /* Metodologia: vertical flow on mobile */
+  .steps {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    max-width: 420px;
+  }
+  .steps::before {
+    top: 32px; bottom: 32px;
+    left: 32px; right: auto;
+    width: 1px; height: auto;
+    background: linear-gradient(to bottom,
+      rgba(168,167,175,0) 0%,
+      rgba(168,167,175,.22) 10%,
+      rgba(168,167,175,.22) 90%,
+      rgba(168,167,175,0) 100%
+    );
+  }
+  .step {
+    display: grid;
+    grid-template-columns: 64px 1fr;
+    gap: 1.5rem;
+    text-align: left;
+  }
+  .step__num { margin: 0; }
+  .step__body p { max-width: none; margin: 0; }
 
   /* Depoimentos */
   .depoimentos__grid { grid-template-columns: 1fr; }
@@ -900,9 +992,13 @@ a.google-badge:hover { opacity: .75; }
   /* Area cards: more compact padding */
   .area-card { padding: 1.875rem 1.5rem; }
 
-  /* Equipe: keep photo visible but compact */
-  .adv-card__photo { height: 260px; }
-  .adv-card__body  { padding: 1.5rem 1.5rem 1.75rem; }
+  /* Equipe: photo keeps aspect-ratio, body padding tight */
+  .adv-card__body { padding: 0; }
+
+  /* Metodologia: smaller circles on narrow screens */
+  .step { grid-template-columns: 52px 1fr; gap: 1.25rem; }
+  .step__num { width: 52px; height: 52px; font-size: .95rem; }
+  .steps::before { top: 26px; bottom: 26px; left: 26px; }
 
   /* FAQ: slightly smaller question text but keep tap target */
   .faq-item__q { font-size: .9rem; padding: 1.25rem 0; }
