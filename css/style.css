@@ -548,6 +548,11 @@ section[id] { scroll-margin-top: 80px; }
    METODOLOGIA — horizontal flow
    ============================================================ */
 .metodologia { background: var(--navy); }
+.metodologia .section-header {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
 
 .steps {
   display: grid;
