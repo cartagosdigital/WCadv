@@ -1105,8 +1105,33 @@ a.google-badge:hover { opacity: .75; }
     text-align: center;
   }
   .hero__eyebrow { margin-bottom: 1.5rem; }
-  .hero__title { margin-left: auto; margin-right: auto; }
+  .hero__title {
+    margin-left: auto;
+    margin-right: auto;
+    font-size: clamp(2.5rem, 9vw, 3.25rem);
+    line-height: 1.08;
+  }
   .hero__desc  { margin-left: auto; margin-right: auto; }
+
+  /* Center all section-level content blocks on mobile */
+  .section-header {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Sobre: center the text content while photo stays full-bleed banner */
+  .sobre__content { text-align: center; }
+  .sobre__content .btn { align-self: center; }
+
+  /* Contato: center header + button */
+  .contato__header { align-items: center; text-align: center; }
+  .contato__header-text { text-align: center; }
+
+  /* CTA-mid: center the entire band */
+  .cta-mid__inner { align-items: center; text-align: center; }
+  .cta-mid__text  { text-align: center; }
+  .cta-mid__text p { margin-left: auto; margin-right: auto; }
   .hero__actions {
     flex-direction: column;
     align-items: center;
