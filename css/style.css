@@ -546,16 +546,21 @@ section[id] { scroll-margin-top: 80px; }
 .sobre__grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 6rem;
-  align-items: center;
+  gap: 4.5rem;
+  align-items: stretch;
 }
 
-/* Office photo */
+/* Visual column flex-fills so the photo can stretch with the content */
+.sobre__visual { display: flex; }
+
+/* Office photo — stretches to match content height */
 .sobre__photo {
   width: 100%;
-  height: 440px;
+  flex: 1;
+  min-height: 460px;
   overflow: hidden;
   border-radius: 2px;
+  background: var(--navy-2);
 }
 .sobre__photo img {
   width: 100%; height: 100%;
@@ -566,24 +571,55 @@ section[id] { scroll-margin-top: 80px; }
 }
 .sobre__photo:hover img { transform: scale(1.03); }
 
+/* Content column — vertically centered for visual balance */
+.sobre__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 .sobre__content h2 { color: var(--navy); margin-bottom: 1.25rem; }
 .sobre__content p  { margin-bottom: 1.1rem; }
+.sobre__content .btn { align-self: flex-start; margin-top: .75rem; }
 
+/* Stats — full-width band with vertical separators */
 .sobre__stats {
-  display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem;
-  padding: 2rem 0; margin: 1.75rem 0;
-  border-top: 1px solid var(--off-white);
-  border-bottom: 1px solid var(--off-white);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  margin-top: 4.5rem;
+  padding: 2.5rem 0;
+  border-top: 1px solid rgba(20,31,58,.08);
+  border-bottom: 1px solid rgba(20,31,58,.08);
+}
+.sobre__stats .stat {
+  text-align: center;
+  padding: 0 1.5rem;
+  position: relative;
+}
+.sobre__stats .stat + .stat::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 18%; bottom: 18%;
+  width: 1px;
+  background: rgba(20,31,58,.08);
 }
 .stat__n {
-  display: block; font-family: var(--font-h);
-  font-size: 1.875rem; font-weight: 800;
-  color: var(--navy); line-height: 1;
+  display: block;
+  font-family: var(--font-h);
+  font-size: clamp(1.875rem, 3vw, 2.5rem);
+  font-weight: 800;
+  color: var(--navy);
+  line-height: 1;
+  letter-spacing: -.02em;
 }
 .stat__l {
-  display: block; font-size: .72rem; font-weight: 600;
-  letter-spacing: .08em; text-transform: uppercase;
-  color: var(--gray-2); margin-top: .3rem;
+  display: block;
+  font-size: .72rem;
+  font-weight: 600;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--gray-2);
+  margin-top: .625rem;
 }
 
 /* ============================================================
@@ -1055,8 +1091,9 @@ a.google-badge:hover { opacity: .75; }
   .hero__foot-inner { column-gap: 1.5rem; }
 
   /* Sobre: stack, photo becomes banner */
-  .sobre__grid { grid-template-columns: 1fr; gap: 2.5rem; }
-  .sobre__photo { height: 320px; }
+  .sobre__grid { grid-template-columns: 1fr; gap: 2.5rem; align-items: stretch; }
+  .sobre__photo { min-height: 0; height: 320px; flex: 0 0 auto; }
+  .sobre__stats { margin-top: 3rem; padding: 2rem 0; }
 
   /* Areas */
   .areas__grid { grid-template-columns: repeat(2, 1fr); }
@@ -1215,7 +1252,9 @@ a.google-badge:hover { opacity: .75; }
    RESPONSIVE — 480px
    ============================================================ */
 @media (max-width: 480px) {
-  .sobre__stats { grid-template-columns: repeat(3,1fr); gap: .875rem; padding: 1.5rem 0; margin: 1.25rem 0; }
+  .sobre__stats { grid-template-columns: repeat(3,1fr); padding: 1.75rem 0; margin-top: 2.5rem; }
+  .sobre__stats .stat { padding: 0 .5rem; }
+  .stat__l { font-size: .62rem; letter-spacing: .08em; }
   .stat__n { font-size: 1.5rem; }
   .sobre__photo { height: 240px; }
 
