@@ -175,6 +175,16 @@ section[id] { scroll-margin-top: 80px; }
 /* ============================================================
    LOGO
    ============================================================ */
+.logo-img {
+  display: block;
+  height: 44px;
+  width: auto;
+  transition: opacity var(--dur);
+}
+.nav__logo:hover .logo-img { opacity: .82; }
+.logo-img--footer { height: 56px; margin-bottom: .25rem; }
+
+/* Legacy text logo (kept for any inline references) */
 .logo-mark {
   font-family: var(--font-h); font-size: 1.45rem; font-weight: 800;
   letter-spacing: -.025em; color: var(--off-white); line-height: 1; display: block;
@@ -238,7 +248,7 @@ section[id] { scroll-margin-top: 80px; }
   position: relative;
   min-height: 100svh;
   background: var(--navy);
-  background-image: url('../img/hero/bg_Hero.jpg');
+  background-image: url('../img/hero/bg_Hero.webp');
   background-size: cover;
   background-position: center 40%;
   overflow: hidden;
