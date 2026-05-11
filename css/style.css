@@ -1096,7 +1096,7 @@ a.google-badge:hover { opacity: .75; }
   .nav__cta   { display: none; }
   .nav__burger { display: flex; }
 
-  .hero__container { padding-top: 6rem; padding-bottom: 3rem; }
+  .hero__container { padding-top: 8rem; padding-bottom: 3rem; }
 
   /* Center hero content on mobile for visual harmony */
   .hero__content {
