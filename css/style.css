@@ -238,7 +238,7 @@ section[id] { scroll-margin-top: 80px; }
   position: relative;
   min-height: 100svh;
   background: var(--navy);
-  background-image: url('https://live.staticflickr.com/4134/4917986230_7bf25cae1d_h.jpg');
+  background-image: url('../img/hero/bg_Hero.jpg');
   background-size: cover;
   background-position: center 40%;
   overflow: hidden;
@@ -759,7 +759,7 @@ a.google-badge:hover { opacity: .75; }
       rgba(13,21,40,.15) 70%,
       rgba(13,21,40,.55) 100%
     ),
-    url('../img/cta/bg_cta.png');
+    url('../img/cta/bg_CTA.jpg');
   background-size: cover, cover, cover;
   background-position: center, center, center;
   background-repeat: no-repeat;
