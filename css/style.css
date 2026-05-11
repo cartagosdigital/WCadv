@@ -1196,11 +1196,11 @@ a.google-badge:hover { opacity: .75; }
   .depoimentos__grid { grid-template-columns: 1fr; }
 
   /* CTA mid */
-  .cta-mid__inner { flex-direction: column; align-items: flex-start; }
+  .cta-mid__inner { flex-direction: column; }
   .cta-mid__btn   { width: 100%; justify-content: center; }
 
   /* Contato */
-  .contato__header { flex-direction: column; align-items: flex-start; }
+  .contato__header { flex-direction: column; }
   .contato__header-btn { width: 100%; justify-content: center; }
   .contato__offices { grid-template-columns: 1fr; }
   .contato__map-frame { height: 320px; }
