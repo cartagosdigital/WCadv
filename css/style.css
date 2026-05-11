@@ -342,27 +342,7 @@ section[id] { scroll-margin-top: 80px; }
   text-align: left;
 }
 
-/* Editorial cabeçalho — marker + eyebrow numa linha só */
-.hero__eyebrow-row {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 1.125rem;
-  margin-bottom: 2.25rem;
-}
-.hero__marker {
-  font-family: var(--font-h);
-  font-size: .7rem;
-  font-weight: 700;
-  letter-spacing: .2em;
-  text-transform: uppercase;
-  color: rgba(245,245,245,.7);
-  padding: .375rem .625rem;
-  border: 1px solid rgba(245,245,245,.22);
-  white-space: nowrap;
-  line-height: 1;
-}
-.hero__eyebrow-row .eyebrow { margin-bottom: 0; }
+.hero__eyebrow { margin-bottom: 2.25rem; }
 
 .hero__title {
   color: var(--off-white);
@@ -1117,13 +1097,35 @@ a.google-badge:hover { opacity: .75; }
   .nav__burger { display: flex; }
 
   .hero__container { padding-top: 6rem; padding-bottom: 3rem; }
-  .hero__eyebrow-row { gap: .875rem; margin-bottom: 1.75rem; }
-  .hero__marker { font-size: .62rem; padding: .3rem .5rem; letter-spacing: .15em; }
-  .hero__actions { flex-direction: column; align-items: stretch; width: 100%; max-width: 320px; gap: 1.25rem; }
+
+  /* Center hero content on mobile for visual harmony */
+  .hero__content {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+  }
+  .hero__eyebrow { margin-bottom: 1.5rem; }
+  .hero__title { margin-left: auto; margin-right: auto; }
+  .hero__desc  { margin-left: auto; margin-right: auto; }
+  .hero__actions {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 320px;
+    margin: 0 auto;
+    gap: 1.25rem;
+  }
   .hero__actions .btn { width: 100%; }
   .hero__link { justify-content: center; }
-  .hero__foot-inner { column-gap: 1.25rem; padding: .875rem 0; }
-  .hero__foot-item { font-size: .72rem; }
+
+  .hero__foot-inner {
+    column-gap: 1.25rem;
+    padding: .875rem 0;
+    justify-content: center;
+    text-align: center;
+  }
+  .hero__foot-item { font-size: .72rem; justify-content: center; }
 
   /* Diferenciais: single column */
   .diferenciais__grid { grid-template-columns: 1fr; }
