@@ -177,13 +177,13 @@ section[id] { scroll-margin-top: 80px; }
    ============================================================ */
 .logo-img {
   display: block;
-  height: 28px;
+  height: 32px;
   width: auto;
   transition: opacity var(--dur);
 }
 .nav__logo:hover .logo-img { opacity: .82; }
 .logo-img--mark { height: 38px; }
-.logo-img--footer { height: 28px; margin-bottom: .25rem; }
+.logo-img--footer { height: 36px; margin-bottom: .25rem; }
 
 /* Legacy text logo (kept for any inline references) */
 .logo-mark {
