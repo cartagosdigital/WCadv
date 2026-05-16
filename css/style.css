@@ -623,46 +623,66 @@ section[id] { scroll-margin-top: 80px; }
 }
 
 /* ============================================================
-   ÁREAS
+   ÁREAS — editorial split (intro sticky + lista numerada)
    ============================================================ */
 .areas { background: var(--navy); }
 
-.areas__grid {
+.areas__layout {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1px;
-  background: rgba(168,167,175,.12);
-  margin-bottom: 3rem;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: 4.5rem;
+  align-items: start;
 }
 
-.area-card {
-  background: var(--navy);
-  padding: 2.5rem 2rem;
-  position: relative;
-  overflow: hidden;
-  transition: background var(--dur);
-}
-.area-card::after {
-  content: '';
-  position: absolute;
-  bottom: 0; left: 0; right: 100%;
-  height: 2px;
-  background: var(--gray-3);
-  transition: right .4s ease;
-}
-.area-card:hover { background: var(--navy-3); }
-.area-card:hover::after { right: 0; }
+/* Intro column (sticky on scroll) */
+.areas__intro { position: sticky; top: 110px; }
+.areas__intro .section-header { margin-bottom: 2.25rem; max-width: none; }
+.areas__intro .section-header p { font-size: .95rem; line-height: 1.75; }
+.areas__cta { text-align: left; }
 
-.area-card__n {
-  display: block; font-family: var(--font-h);
-  font-size: 2rem; font-weight: 800;
-  color: var(--gray); opacity: .2;
-  line-height: 1; margin-bottom: 1.25rem;
+/* List of areas (right column) */
+.areas__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
 }
-.area-card h3 { font-size: 1.05rem; color: var(--off-white); margin-bottom: .625rem; font-weight: 600; }
-.area-card p  { font-size: .875rem; color: rgba(245,245,245,.8); line-height: 1.6; }
-
-.areas__cta { text-align: center; }
+.area-row {
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  gap: 1.5rem;
+  align-items: start;
+  padding: 1.75rem 0;
+  border-bottom: 1px solid rgba(168,167,175,.12);
+  transition: padding-left var(--dur) var(--ease);
+}
+.area-row:first-child {
+  padding-top: 0;
+  border-top: 1px solid rgba(168,167,175,.12);
+}
+.area-row:hover { padding-left: 8px; }
+.area-row__n {
+  font-family: var(--font-h);
+  font-size: 1.625rem;
+  font-weight: 800;
+  color: rgba(168,167,175,.45);
+  letter-spacing: -.02em;
+  line-height: 1;
+  padding-top: .375rem;
+}
+.area-row__body h3 {
+  font-size: 1.2rem;
+  color: var(--off-white);
+  margin-bottom: .5rem;
+  font-weight: 600;
+  letter-spacing: -.01em;
+}
+.area-row__body p {
+  font-size: .9rem;
+  color: rgba(245,245,245,.78);
+  line-height: 1.65;
+}
 
 /* ============================================================
    EQUIPE
@@ -1095,8 +1115,9 @@ a.google-badge:hover { opacity: .75; }
   .sobre__photo { min-height: 0; height: 320px; flex: 0 0 auto; }
   .sobre__stats { margin-top: 3rem; padding: 2rem 0; }
 
-  /* Areas */
-  .areas__grid { grid-template-columns: repeat(2, 1fr); }
+  /* Areas: stack intro on top, list below */
+  .areas__layout { grid-template-columns: 1fr; gap: 3rem; }
+  .areas__intro  { position: static; top: auto; }
 
   /* Equipe */
   .equipe__grid { grid-template-columns: 1fr; max-width: 420px; gap: 2.5rem; }
@@ -1197,8 +1218,12 @@ a.google-badge:hover { opacity: .75; }
   .artigos__grid { grid-template-columns: 1fr; }
   .art-card__body { padding: 1.5rem 1.5rem 1.75rem; }
 
-  /* Areas */
-  .areas__grid { grid-template-columns: 1fr; gap: 1px; }
+  /* Areas: tighter rows */
+  .area-row { grid-template-columns: 44px 1fr; gap: 1.25rem; padding: 1.5rem 0; }
+  .area-row__n { font-size: 1.375rem; }
+  .area-row__body h3 { font-size: 1.05rem; }
+  .areas__cta { text-align: center; }
+  .areas__cta .btn { width: 100%; max-width: 320px; justify-content: center; }
 
   /* Equipe */
   .equipe__grid { max-width: none; }
@@ -1260,8 +1285,11 @@ a.google-badge:hover { opacity: .75; }
 
   .google-badge { gap: .5rem; flex-wrap: wrap; justify-content: center; }
 
-  /* Area cards: more compact padding */
-  .area-card { padding: 1.875rem 1.5rem; }
+  /* Area rows: compact for very small screens */
+  .area-row { grid-template-columns: 36px 1fr; gap: 1rem; padding: 1.25rem 0; }
+  .area-row__n { font-size: 1.125rem; padding-top: .25rem; }
+  .area-row__body h3 { font-size: 1rem; }
+  .area-row__body p  { font-size: .85rem; }
 
   /* Equipe: photo keeps aspect-ratio, body padding tight */
   .adv-card__body { padding: 0; }
