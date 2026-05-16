@@ -1061,10 +1061,10 @@ a.google-badge:hover { opacity: .75; }
   display: grid;
   grid-template-columns: 0.85fr 1.15fr;
   gap: 3.5rem;
-  align-items: start;
+  align-items: stretch;
 }
 
-/* LEFT: stacked contact cards */
+/* LEFT: stacked contact cards — flex column that stretches to match form */
 .contato__cards {
   display: flex;
   flex-direction: column;
@@ -1074,6 +1074,10 @@ a.google-badge:hover { opacity: .75; }
   background: var(--white);
   padding: 1.875rem 1.875rem;
   border-top: 2px solid var(--navy);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 .contact-card__label {
   display: block;
@@ -1092,33 +1096,26 @@ a.google-badge:hover { opacity: .75; }
   margin: 0;
 }
 
-/* Primary card — atendimento (phone + email on navy) */
-.contact-card--primary {
-  background: var(--navy);
-  border-top-color: var(--navy);
-}
-.contact-card--primary .contact-card__label {
-  color: rgba(245,245,245,.7);
-}
+/* Atendimento card — phone large on white bg */
 .contact-card__phone {
   display: block;
   font-family: var(--font-h);
   font-size: clamp(1.25rem, 2vw, 1.55rem);
   font-weight: 800;
-  color: var(--off-white);
+  color: var(--navy);
   letter-spacing: -.015em;
-  margin-bottom: .6rem;
+  margin-bottom: .5rem;
   transition: opacity var(--dur);
 }
-.contact-card__phone:hover { opacity: .82; }
+.contact-card__phone:hover { opacity: .7; }
 .contact-card__email {
   display: inline-block;
   font-size: .9rem;
-  color: rgba(245,245,245,.85);
+  color: var(--gray-2);
   word-break: break-word;
   transition: color var(--dur);
 }
-.contact-card__email:hover { color: var(--off-white); }
+.contact-card__email:hover { color: var(--navy); }
 
 /* RIGHT: form */
 .contato__form-wrap {
