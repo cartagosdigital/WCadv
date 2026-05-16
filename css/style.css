@@ -878,7 +878,11 @@ section[id] { scroll-margin-top: 80px; }
 /* ============================================================
    DEPOIMENTOS
    ============================================================ */
-.depoimentos { background: var(--white); }
+.depoimentos { background: var(--off-white); }
+.depoimentos .dep-card {
+  background: var(--white);
+  box-shadow: 0 1px 3px rgba(20,31,58,.04);
+}
 
 .google-badge {
   display: inline-flex; align-items: center; gap: .75rem;
