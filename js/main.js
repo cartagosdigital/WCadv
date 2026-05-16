@@ -34,30 +34,6 @@
     });
   });
 
-  /* ---- FAQ accordion ---- */
-  document.querySelectorAll('.faq-item__q').forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      const item   = btn.closest('.faq-item');
-      const answer = item.querySelector('.faq-item__a');
-      const isOpen = item.classList.contains('open');
-
-      // Close all
-      document.querySelectorAll('.faq-item').forEach(function (i) {
-        i.classList.remove('open');
-        i.querySelector('.faq-item__q').setAttribute('aria-expanded', 'false');
-        const a = i.querySelector('.faq-item__a');
-        delete a.dataset.open;
-      });
-
-      // Toggle current
-      if (!isOpen) {
-        item.classList.add('open');
-        btn.setAttribute('aria-expanded', 'true');
-        answer.dataset.open = '';
-      }
-    });
-  });
-
   /* ---- Reveal on scroll ---- */
   const revealEls = document.querySelectorAll('.reveal');
 
