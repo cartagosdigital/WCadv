@@ -543,6 +543,40 @@ section[id] { scroll-margin-top: 80px; }
    ============================================================ */
 .sobre { background: var(--white); }
 
+/* Editorial intro (centralizado) */
+.sobre__intro {
+  max-width: 820px;
+  margin: 0 auto clamp(3.5rem, 6vw, 5rem);
+  text-align: center;
+}
+.sobre__intro .section-header {
+  max-width: none;
+  margin: 0 auto 2.5rem;
+  text-align: center;
+}
+.sobre__intro .section-header h2 {
+  color: var(--navy);
+  font-size: clamp(1.875rem, 3.2vw, 2.625rem);
+  letter-spacing: -.02em;
+}
+.sobre__lead p {
+  font-size: 1.02rem;
+  line-height: 1.8;
+  margin: 0 auto 1.15rem;
+  max-width: 720px;
+  color: var(--gray-2);
+}
+.sobre__lead p:last-child { margin-bottom: 0; }
+
+/* CTA centered with subtle divider */
+.sobre__cta {
+  margin-top: clamp(3rem, 5vw, 4rem);
+  padding-top: clamp(2rem, 4vw, 3rem);
+  border-top: 1px solid rgba(20,31,58,.08);
+  text-align: center;
+}
+
+/* Legacy 2-col grid kept (unused, harmless) */
 .sobre__grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -694,7 +728,7 @@ section[id] { scroll-margin-top: 80px; }
   grid-template-columns: repeat(2, 1fr);
   gap: 3rem;
   max-width: 900px;
-  margin: 0 auto 3.5rem;
+  margin: 0 auto;
   align-items: start;
 }
 
