@@ -701,7 +701,6 @@ section[id] { scroll-margin-top: 80px; }
   transition: padding-left var(--dur) var(--ease);
 }
 .area-row:first-child {
-  padding-top: 0;
   border-top: 1px solid rgba(168,167,175,.12);
 }
 .area-row:hover { padding-left: 8px; }
