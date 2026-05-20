@@ -780,6 +780,16 @@ section[id] { scroll-margin-top: 80px; }
 }
 .adv-card:hover .adv-card__photo img { transform: scale(1.04); }
 
+/* William: zoom 110% para padronizar o enquadramento com o do Henrique */
+.adv-card__photo img[src*="william"] {
+  transform: scale(1.1);
+  transform-origin: center center;
+  object-position: center center;
+}
+.adv-card:hover .adv-card__photo img[src*="william"] {
+  transform: scale(1.14);
+}
+
 .adv-card__body {
   padding: 0 .25rem;
 }
