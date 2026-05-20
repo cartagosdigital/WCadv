@@ -87,4 +87,69 @@
   window.addEventListener('scroll', setActiveLink, { passive: true });
   setActiveLink();
 
+  /* ---- Float WhatsApp: visível só após o hero ---- */
+  const waFloat = document.querySelector('.wa-float');
+  const hero    = document.getElementById('inicio');
+  if (waFloat && hero && 'IntersectionObserver' in window) {
+    waFloat.classList.add('wa-float--hidden');
+    const heroObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        // hero fora da viewport (passou) → mostrar float
+        waFloat.classList.toggle('wa-float--hidden', entry.isIntersecting);
+      });
+    }, { threshold: 0.25 });
+    heroObserver.observe(hero);
+  }
+
+  /* ---- Hide nav when footer is in view (evita "duas logos") ---- */
+  const footer = document.querySelector('.footer');
+  if (footer && nav && 'IntersectionObserver' in window) {
+    const footerObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        nav.classList.toggle('nav--hidden', entry.isIntersecting);
+      });
+    }, { threshold: 0.05 });
+    footerObserver.observe(footer);
+  }
+
+  /* ---- Depoimentos carousel: dots indicadores (mobile-only) ---- */
+  const track = document.getElementById('depoimentosTrack');
+  const dots  = document.getElementById('depoimentosDots');
+  if (track && dots) {
+    const cards = track.querySelectorAll('.dep-card');
+    cards.forEach(function (_, i) {
+      const dot = document.createElement('button');
+      dot.type = 'button';
+      dot.setAttribute('aria-label', 'Depoimento ' + (i + 1));
+      if (i === 0) dot.setAttribute('aria-current', 'true');
+      dot.addEventListener('click', function () {
+        const card = cards[i];
+        if (card) {
+          track.scrollTo({ left: card.offsetLeft - track.offsetLeft, behavior: 'smooth' });
+        }
+      });
+      dots.appendChild(dot);
+    });
+
+    let scrollTimer;
+    track.addEventListener('scroll', function () {
+      clearTimeout(scrollTimer);
+      scrollTimer = setTimeout(function () {
+        const dotsEls = dots.querySelectorAll('button');
+        const center = track.scrollLeft + (track.clientWidth / 2);
+        let active = 0;
+        let bestDist = Infinity;
+        cards.forEach(function (card, i) {
+          const cardCenter = card.offsetLeft - track.offsetLeft + (card.clientWidth / 2);
+          const dist = Math.abs(cardCenter - center);
+          if (dist < bestDist) { bestDist = dist; active = i; }
+        });
+        dotsEls.forEach(function (d, i) {
+          if (i === active) d.setAttribute('aria-current', 'true');
+          else d.removeAttribute('aria-current');
+        });
+      }, 80);
+    }, { passive: true });
+  }
+
 })();

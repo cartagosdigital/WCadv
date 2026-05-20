@@ -201,13 +201,20 @@ section[id] { scroll-margin-top: 80px; }
    ============================================================ */
 .nav {
   position: fixed; inset: 0 0 auto; z-index: 900;
-  transition: background var(--dur), backdrop-filter var(--dur), box-shadow var(--dur);
+  transition: background var(--dur), backdrop-filter var(--dur), box-shadow var(--dur),
+              transform .4s ease, opacity .3s ease;
 }
 .nav.scrolled {
   background: rgba(13,21,40,.96);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   box-shadow: 0 1px 0 rgba(168,167,175,.07);
+}
+/* Esconde a nav quando o footer está visível (evita "duas logos") */
+.nav.nav--hidden {
+  transform: translateY(-100%);
+  opacity: 0;
+  pointer-events: none;
 }
 .nav__inner {
   display: flex; align-items: center; justify-content: space-between; gap: 2rem;
@@ -413,6 +420,16 @@ section[id] { scroll-margin-top: 80px; }
   column-gap: 2rem; row-gap: .625rem;
   padding: 1.125rem 0; flex-wrap: wrap;
 }
+/* 2-linhas centralizadas */
+.hero__foot-inner--stacked {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: .5rem;
+  padding: 1rem 0;
+}
+.hero__foot-inner--stacked .hero__foot-item { white-space: normal; }
 .hero__foot-item {
   display: flex; align-items: center; gap: .5rem;
   font-family: var(--font-b); font-size: .76rem;
@@ -899,6 +916,26 @@ a.google-badge:hover { opacity: .75; }
 .depoimentos__grid {
   display: grid; grid-template-columns: repeat(3,1fr); gap: 1.25rem;
 }
+
+/* Dots indicators (mostrados só no mobile) */
+.depoimentos__dots {
+  display: none;
+  justify-content: center;
+  gap: .5rem;
+  margin-top: 1.5rem;
+}
+.depoimentos__dots button {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: rgba(20,31,58,.2);
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  transition: background var(--dur), transform var(--dur);
+}
+.depoimentos__dots button[aria-current="true"] {
+  background: var(--navy);
+  transform: scale(1.25);
+}
 .dep-card {
   padding: 2rem 1.75rem; background: var(--off-white);
   border-left: 3px solid var(--navy);
@@ -1179,7 +1216,95 @@ a.google-badge:hover { opacity: .75; }
 }
 .contato__form .btn { margin-top: 1rem; }
 
-/* Map */
+/* === NOVO LAYOUT CONTATO (linear, sem white boxes) === */
+
+/* Form em largura total (sem caixa branca, só borda topo navy) */
+.contato__form-block {
+  max-width: 720px;
+  margin: 0 auto 3rem;
+  padding-top: 2rem;
+  border-top: 2px solid var(--navy);
+}
+
+/* Telefone + e-mail inline */
+.contato__inline {
+  text-align: center;
+  margin: 0 auto 2.5rem;
+  font-family: var(--font-b);
+  font-size: 1rem;
+  color: var(--navy);
+}
+.contato__inline-item {
+  color: var(--navy);
+  transition: opacity var(--dur);
+  font-weight: 500;
+}
+.contato__inline-item:hover { opacity: .65; }
+.contato__inline-dot {
+  margin: 0 .75rem;
+  color: var(--gray);
+  opacity: .6;
+}
+
+/* Endereços lado a lado, texto corrido */
+.contato__addresses {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem;
+  max-width: 720px;
+  margin: 0 auto 3rem;
+  text-align: center;
+}
+.contato__address-label {
+  display: block;
+  font-family: var(--font-b);
+  font-size: .7rem;
+  font-weight: 600;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--gray-2);
+  margin-bottom: .75rem;
+}
+.contato__address p {
+  font-size: .9rem;
+  color: var(--navy);
+  line-height: 1.65;
+  margin: 0;
+}
+
+/* Dois mapas pequenos lado a lado */
+.contato__maps {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+.contato__map-mini {
+  display: flex;
+  flex-direction: column;
+  gap: .75rem;
+}
+.contato__map-mini iframe {
+  width: 100%;
+  height: 240px;
+  border: 0;
+  border-radius: 2px;
+  background: var(--white);
+  filter: grayscale(.15) saturate(.9);
+  touch-action: pan-y;
+}
+.contato__map-mini .contato__map-link {
+  font-family: var(--font-b);
+  font-size: .82rem;
+  font-weight: 600;
+  color: var(--navy);
+  letter-spacing: .02em;
+  text-align: center;
+  transition: opacity var(--dur);
+}
+.contato__map-mini .contato__map-link:hover { opacity: .65; }
+
+/* Map legacy (mantido p/ retrocompat) */
 .contato__map { margin-top: 3.5rem; }
 .contato__map-header {
   display: flex;
@@ -1257,11 +1382,19 @@ a.google-badge:hover { opacity: .75; }
   background: #25D366; color: #fff;
   display: flex; align-items: center; justify-content: center;
   box-shadow: 0 4px 20px rgba(37,211,102,.38);
-  transition: transform var(--dur) var(--ease), box-shadow var(--dur);
+  transition: transform var(--dur) var(--ease), box-shadow var(--dur),
+              opacity .3s ease, visibility .3s ease;
 }
 .wa-float:hover {
   transform: scale(1.1) translateY(-2px);
   box-shadow: 0 8px 28px rgba(37,211,102,.5);
+}
+/* Escondido enquanto o hero estiver visível */
+.wa-float.wa-float--hidden {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(8px);
+  pointer-events: none;
 }
 
 /* ============================================================
@@ -1420,8 +1553,31 @@ a.google-badge:hover { opacity: .75; }
   .step__num { margin: 0; }
   .step__body p { max-width: none; margin: 0; }
 
-  /* Depoimentos */
-  .depoimentos__grid { grid-template-columns: 1fr; }
+  /* Depoimentos — carrossel horizontal com swipe + dots */
+  .depoimentos__grid {
+    display: flex;
+    grid-template-columns: none;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    gap: 1rem;
+    padding-bottom: .5rem;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .depoimentos__grid::-webkit-scrollbar { display: none; }
+  .depoimentos__grid .dep-card {
+    flex: 0 0 calc(100% - 1rem);
+    scroll-snap-align: center;
+  }
+  .depoimentos__dots { display: flex; }
+
+  /* Contato — endereços empilham; mapas empilham */
+  .contato__addresses { grid-template-columns: 1fr; gap: 1.5rem; }
+  .contato__maps { grid-template-columns: 1fr; gap: 1.25rem; }
+  .contato__map-mini iframe { height: 220px; }
+  .contato__inline { font-size: .92rem; line-height: 1.7; }
+  .contato__inline-dot { display: block; height: 0; margin: .25rem 0; visibility: hidden; }
 
   /* CTA mid */
   .cta-mid__inner { flex-direction: column; }
