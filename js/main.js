@@ -112,6 +112,64 @@
     footerObserver.observe(footer);
   }
 
+  /* ---- Form de contato: envio via webhook (Make) ---- */
+  const contatoForm   = document.getElementById('contatoForm');
+  const contatoBtn    = document.getElementById('contatoSubmit');
+  const contatoStatus = document.getElementById('contatoStatus');
+
+  if (contatoForm && contatoBtn) {
+    contatoForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const originalText = contatoBtn.textContent.trim();
+      const data = {
+        nome:     contatoForm.elements['nome'].value.trim(),
+        telefone: contatoForm.elements['telefone'].value.trim(),
+        email:    contatoForm.elements['email'].value.trim(),
+        mensagem: contatoForm.elements['mensagem'].value.trim(),
+        origem:   'willmscarlesso.com.br',
+        enviado_em: new Date().toISOString()
+      };
+
+      contatoBtn.disabled  = true;
+      contatoBtn.textContent = 'Enviando...';
+      if (contatoStatus) {
+        contatoStatus.textContent = '';
+        contatoStatus.classList.remove('contato__form-status--error', 'contato__form-status--success');
+      }
+
+      fetch(contatoForm.action, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      })
+        .then(function (res) {
+          if (!res.ok) throw new Error('http ' + res.status);
+          return res.text().catch(function () { return ''; });
+        })
+        .then(function () {
+          contatoForm.reset();
+          contatoBtn.textContent = 'Mensagem enviada ✓';
+          if (contatoStatus) {
+            contatoStatus.textContent = 'Obrigado pelo contato. Responderemos em breve.';
+            contatoStatus.classList.add('contato__form-status--success');
+          }
+          setTimeout(function () {
+            contatoBtn.textContent = originalText;
+            contatoBtn.disabled = false;
+          }, 4000);
+        })
+        .catch(function () {
+          contatoBtn.textContent = originalText;
+          contatoBtn.disabled = false;
+          if (contatoStatus) {
+            contatoStatus.textContent = 'Não foi possível enviar. Tente novamente ou fale conosco pelo WhatsApp.';
+            contatoStatus.classList.add('contato__form-status--error');
+          }
+        });
+    });
+  }
+
   /* ---- Depoimentos carousel: dots indicadores (mobile-only) ---- */
   const track = document.getElementById('depoimentosTrack');
   const dots  = document.getElementById('depoimentosDots');

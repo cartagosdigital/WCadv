@@ -438,7 +438,7 @@
 
       <!-- Formulário (largura total) -->
       <div class="contato__form-block reveal">
-        <form class="contato__form" action="mailto:contato@willmscarlesso.com.br?subject=Contato pelo site" method="POST" enctype="text/plain">
+        <form class="contato__form" id="contatoForm" action="https://hook.eu2.make.com/9iqcch56zucvtjobrfve1x1kkpd3kt9p" method="POST">
           <div class="form-field">
             <label for="form-nome">Nome</label>
             <input type="text" id="form-nome" name="nome" required autocomplete="name">
@@ -455,9 +455,10 @@
             <label for="form-msg">Breve descrição do caso <span class="form-field__hint">(opcional)</span></label>
             <textarea id="form-msg" name="mensagem" rows="4"></textarea>
           </div>
-          <button type="submit" class="btn btn--primary btn--lg btn--full">
+          <button type="submit" class="btn btn--primary btn--lg btn--full" id="contatoSubmit">
             Enviar mensagem
           </button>
+          <p class="contato__form-status" id="contatoStatus" role="status" aria-live="polite"></p>
         </form>
       </div>
 

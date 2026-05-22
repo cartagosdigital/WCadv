@@ -1227,6 +1227,17 @@ a.google-badge:hover { opacity: .75; }
   padding-top: .75rem;
 }
 .contato__form .btn { margin-top: 1rem; }
+.contato__form-status {
+  margin-top: .875rem;
+  font-family: var(--font-b);
+  font-size: .85rem;
+  line-height: 1.5;
+  color: var(--gray-2);
+  text-align: center;
+  min-height: 1.2em;
+}
+.contato__form-status--success { color: var(--navy); font-weight: 600; }
+.contato__form-status--error   { color: #b3261e; }
 
 /* === NOVO LAYOUT CONTATO (linear, sem white boxes) === */
 
