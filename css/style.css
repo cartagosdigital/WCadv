@@ -582,8 +582,10 @@ section[id] { scroll-margin-top: 80px; }
 }
 .sobre__intro .section-header h2 {
   color: var(--navy);
-  font-size: clamp(1.875rem, 3.2vw, 2.625rem);
-  letter-spacing: -.02em;
+  font-size: clamp(1.375rem, 4.2vw, 2.5rem);
+  letter-spacing: -.025em;
+  white-space: nowrap;
+  line-height: 1.1;
 }
 .sobre__lead p {
   font-size: 1.02rem;
@@ -1424,7 +1426,8 @@ a.google-badge:hover { opacity: .75; }
   .sobre__stats { margin-top: 3rem; padding: 2rem 0; }
 
   /* Areas: stack intro on top, list below */
-  .areas__layout { grid-template-columns: 1fr; gap: 3rem; }
+  .areas__layout { grid-template-columns: 1fr; gap: 1.5rem; }
+  .areas__intro .section-header { margin-bottom: 1.25rem; }
   .areas__intro  { position: static; top: auto; }
 
   /* Equipe */
